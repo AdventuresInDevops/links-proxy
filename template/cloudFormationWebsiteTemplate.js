@@ -276,16 +276,18 @@ const stackProvider = {
             Queues: [{ Ref: 'LogProcessingSQS' }]
           }
         },
-        LogProcessingEventSourceMapping: {
-          Type: 'AWS::Lambda::EventSourceMapping',
-          Properties: {
-            BatchSize: 10,
-            Enabled: true,
-            EventSourceArn: { 'Fn::Sub': '${LogProcessingSQS.Arn}' },
-            FunctionName: { Ref: 'ProductionAlias' },
-            FunctionResponseTypes: ['ReportBatchItemFailures']
-          }
-        },
+
+        // Disable for the moment
+        // LogProcessingEventSourceMapping: {
+        //   Type: 'AWS::Lambda::EventSourceMapping',
+        //   Properties: {
+        //     BatchSize: 10,
+        //     Enabled: true,
+        //     EventSourceArn: { 'Fn::Sub': '${LogProcessingSQS.Arn}' },
+        //     FunctionName: { Ref: 'ProductionAlias' },
+        //     FunctionResponseTypes: ['ReportBatchItemFailures']
+        //   }
+        // },
 
         RedirectMap: {
           Type: 'AWS::CloudFront::KeyValueStore',
@@ -327,17 +329,6 @@ const stackProvider = {
                   S3OriginConfig: {}
                 }
               ],
-              CacheBehaviors: [
-                {
-                  AllowedMethods: ['GET', 'HEAD', 'OPTIONS'],
-                  Compress: true,
-                  CachePolicyId: '658327ea-f89d-4fab-a63d-7e88639e58f6',
-                  OriginRequestPolicyId: '88a5eaf4-2fd4-4709-b370-b4c650ea3fcf',
-                  PathPattern: 'PR-*',
-                  TargetOriginId: { 'Fn::Sub': 'TST-S3' },
-                  ViewerProtocolPolicy: 'redirect-to-https'
-                }
-              ],
               Enabled: true,
               ViewerCertificate: {
                 AcmCertificateArn: { Ref: 'AcmCertificate' },
@@ -356,6 +347,17 @@ const stackProvider = {
                   FunctionARN: { 'Fn::Sub': '${RequestInterceptorLambdaCfFunction.FunctionARN}' }
                 }]
               },
+              CacheBehaviors: [
+                {
+                  AllowedMethods: ['GET', 'HEAD', 'OPTIONS'],
+                  Compress: true,
+                  CachePolicyId: '658327ea-f89d-4fab-a63d-7e88639e58f6',
+                  OriginRequestPolicyId: '88a5eaf4-2fd4-4709-b370-b4c650ea3fcf',
+                  PathPattern: 'PR-*',
+                  TargetOriginId: { 'Fn::Sub': 'TST-S3' },
+                  ViewerProtocolPolicy: 'redirect-to-https'
+                }
+              ],
               CustomErrorResponses: [
                 {
                   ErrorCode: 403,

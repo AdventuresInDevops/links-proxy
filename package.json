@@ -19,7 +19,7 @@
     "commander": "2.15.1",
     "cross-env": "^7.0.2",
     "eslint": "^8.31.0",
-    "eslint-config-authress": "1.0.28",
+    "@authress/eslint-config": "1.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
