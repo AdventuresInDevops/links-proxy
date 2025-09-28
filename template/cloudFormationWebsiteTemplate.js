@@ -1,5 +1,5 @@
 const stackProvider = {
-  getStack(requestInterceptorLambdaFunctionString) {
+  getStack({ requestInterceptorLambdaFunctionString}) {
     return {
       AWSTemplateFormatVersion: '2010-09-09',
       Parameters: {

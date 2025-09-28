@@ -1,7 +1,7 @@
 // eslint-disable-next-line node/no-missing-import
 import cf from 'cloudfront';
 
-const kvsId = '';
+const kvsId = 'fa4d81f8-9371-4fac-8bc3-f295083b910e';
 let kvsHandle;
 try {
   kvsHandle = cf.kvs(kvsId);
