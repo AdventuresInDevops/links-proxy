@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-missing-import
 import cf from 'cloudfront';
 
 const kvsId = '';
@@ -19,7 +20,7 @@ try {
   }));
 }
 
-// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 async function handler(event) {
   // IMPORTANT: if this path requested doesn't exist in the bucket then the site error default will be loaded instead:
   // https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/functions-event-structure.html#functions-event-structure-request
@@ -41,7 +42,7 @@ async function handler(event) {
         location: { value: `${redirectUrl}` }
       }
     };
-  } catch (err) {
+  } catch (error) {
     // eslint-disable-next-line no-console
     console.log(JSON.stringify({
       message: {

@@ -1,12 +1,8 @@
 {
   "parser": "@typescript-eslint/parser",
   "root": true,
-  "plugins": [
-    "@typescript-eslint"
-  ],
   "extends": [
-    "cimpress-atsquad",
-    "plugin:@typescript-eslint/recommended"
+    "@authress/eslint-config"
   ],
   "rules": {
     "arrow-parens": ["error", "as-needed"],

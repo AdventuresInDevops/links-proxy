@@ -406,4 +406,4 @@ const stackProvider = {
   }
 };
 
-module.exports = stackProvider;
+export default stackProvider;
