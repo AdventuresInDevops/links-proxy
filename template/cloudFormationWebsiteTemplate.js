@@ -13,13 +13,11 @@ const stackProvider = {
         },
         serviceName: {
           Type: 'String',
-          Description: 'The name of this service',
-          Default: 'KnowledgeBase'
+          Description: 'The name of this service'
         },
         serviceDescription: {
           Type: 'String',
-          Description: 'Helpful description for the service',
-          Default: 'Knowledge Base'
+          Description: 'Helpful description for the service'
         }
       },
 

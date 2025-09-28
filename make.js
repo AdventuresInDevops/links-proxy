@@ -38,7 +38,11 @@ function getVersion() {
 const version = getVersion();
 commander.version(version);
 
-const parameters = { hostedName: 'dev0ps.fyi' };
+const parameters = {
+  hostedName: 'dev0ps.fyi',
+  serviceName: 'LinksProxy',
+  serviceDescription: 'Links Proxy for tracking link clicks.'
+};
 
 const contentOptions = {
   bucket: parameters.hostedName,
