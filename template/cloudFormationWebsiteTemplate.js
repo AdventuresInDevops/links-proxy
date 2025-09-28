@@ -222,7 +222,8 @@ const stackProvider = {
                 Id: 'Delete old objects',
                 Status: 'Enabled',
                 AbortIncompleteMultipartUpload: { DaysAfterInitiation: 30 },
-                ExpirationInDays: 60
+                ExpirationInDays: 60,
+                NoncurrentVersionExpirationInDays: 30
               }]
             },
             NotificationConfiguration: {
