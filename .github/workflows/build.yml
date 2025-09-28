@@ -53,13 +53,13 @@ jobs:
         audience: sts.amazonaws.com
         role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubRunnerAssumedRole
         role-session-name: GitHubRunner-${{ github.repository_owner }}-${{ github.event.repository.name }}-${{ github.run_number }}
-    - name: After build
-      if: github.repository_owner == 'adventuresindevops'
-      env:
-        AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      run: yarn after_build
     - name: Create Github Release and Tag
       if: github.repository_owner == 'adventuresindevops'
       run: |
         git tag ${GITHUB_REF/refs\/heads\/release\//}.$GITHUB_RUN_NUMBER
         git push origin ${GITHUB_REF/refs\/heads\/release\//}.$GITHUB_RUN_NUMBER
+    - name: Deploy
+      if: github.repository_owner == 'adventuresindevops'
+      env:
+        AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      run: yarn deploy
