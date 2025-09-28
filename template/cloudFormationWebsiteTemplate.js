@@ -199,7 +199,6 @@ const stackProvider = {
 
         CloudWatchLambdaLogGroup: {
           Type: 'AWS::Logs::LogGroup',
-          DeletionPolicy: 'Retain',
           Properties: {
             LogGroupName: { 'Fn::Sub': '/aws/lambda/${serviceName}' },
             RetentionInDays: 365
