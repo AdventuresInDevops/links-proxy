@@ -56,8 +56,11 @@ jobs:
     - name: Create Github Release and Tag
       if: github.repository_owner == 'adventuresindevops'
       run: |
-        git tag ${GITHUB_REF/refs\/heads\/release\//}.$GITHUB_RUN_NUMBER
-        git push origin ${GITHUB_REF/refs\/heads\/release\//}.$GITHUB_RUN_NUMBER
+        TAG=${GITHUB_REF/refs\/heads\/release\//}
+        TAG=${TAG/refs\/heads\/main/0.0}
+
+        git tag ${TAG}.$GITHUB_RUN_NUMBER
+        git push origin ${TAG}.$GITHUB_RUN_NUMBER
     - name: Deploy
       if: github.repository_owner == 'adventuresindevops'
       env:
