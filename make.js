@@ -88,7 +88,7 @@ commander
       const route53Client = new Route53Client({});
       const command = new ListHostedZonesByNameCommand({ DNSName: parameters.hostedName });
       const response = await route53Client.send(command);
-      const hostedZoneId = response.HostedZones[0].Id;
+      const hostedZoneId = response.HostedZones[0].Id.replace('/hostedzone/', '');
       parameters.hostedZoneId = hostedZoneId;
       await awsArchitect.deployTemplate(stackTemplate, stackConfiguration, parameters);
     }
