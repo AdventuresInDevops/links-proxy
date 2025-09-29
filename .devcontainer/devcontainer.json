@@ -15,7 +15,9 @@
 		"vscode": {
 			"settings": {
 				// This is the key setting for VS Code to forward the host's SSH agent
-				"terminal.integrated.inheritEnv": true 
+				"terminal.integrated.inheritEnv": true,
+				"dev.containers.copyGitConfig": true
+
 			},
 			"extensions": [
 				"streetsidesoftware.code-spell-checker"
@@ -38,11 +40,15 @@
 	"mounts": [
 		// Is currently in string format because consistency option is not yet supported in object format
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached"
-	],
+	],	
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "yarn"
+	"postCreateCommand": "yarn",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
+
+	// SSH/Git commit signing
+	"forwardPorts": [5432],
+	"forward-ssh-agent": true
 }
