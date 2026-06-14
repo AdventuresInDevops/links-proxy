@@ -33,6 +33,13 @@ async function handler(event) {
 
   };
 
+  if (requestUri === '/' || requestUri === '/robots.txt') {
+    return {
+      statusCode: 404,
+      statusDescription: 'Not Found'
+    };
+  }
+
   try {
     const redirectUrl = redirectMap[requestUri] || await kvsHandle.get(requestUri);
     return {
@@ -46,8 +53,8 @@ async function handler(event) {
     // eslint-disable-next-line no-console
     console.log(JSON.stringify({
       message: {
-        title: 'Failed to fetch redirect target.',
-        level: 'ERROR',
+        title: `Failed to fetch redirect target. - ${requestUri}`,
+        level: 'TRACK',
         error: {
           message: error.message,
           code: error.code,
